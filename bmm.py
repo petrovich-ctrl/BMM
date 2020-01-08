@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 # Loading the data
-df = pd.read_csv("ds81.csv")
+df = pd.read_csv("dataset/ds81.csv")
 N = df.shape[0]
 
 
