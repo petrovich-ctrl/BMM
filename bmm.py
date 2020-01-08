@@ -43,10 +43,26 @@ def get_cond_prob(x, p):
   return np.multiply(a, b)
 
 def get_apr(histo):
+    """
+    >>> get_apr( np.asarray( [[0.3, 0.7],[0.45, 0.55]] ) )
+    array([0.375, 0.625])
+    >>> get_apr( np.asarray( [[0.0, 1],[0.5, 0.5]] ) )
+    array([0.25, 0.75])
+
+    """
     p = histo.mean(axis=0)
     return p
 
 def get_aps(conds, apr):
+  """
+  >>> get_aps(np.asarray( [[0.2, 0.8],[0.5, 0.5]] ), np.asarray([0.25, 0.75]))
+  array([[0.07692308, 0.92307692],
+  [0.25 , 0.75 ]])
+
+  >>> get_aps(np.asarray( [[0.5, 0.5],[0, 1]] ), np.asarray([0.5, 0.5]))
+  array([[0.5, 0.5],
+  [0. , 1. ]])
+  """
   temp = conds[:, 0]*apr[0] + conds[:, 1]*apr[1]
   aps_a = (conds[:, 0]*apr[0])/temp
   aps_b = (conds[:, 1]*apr[1])/temp
